@@ -227,6 +227,8 @@ type Terminfo struct {
 	CursorSteadyUnderline   string
 	CursorBlinkingBar       string
 	CursorSteadyBar         string
+	StringTerminator        string
+	Hyperlink               string
 }
 
 const (

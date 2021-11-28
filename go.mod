@@ -10,3 +10,5 @@ require (
 	golang.org/x/term v0.0.0-20201210144234-2321bbc49cbf
 	golang.org/x/text v0.3.7
 )
+
+replace golang.org/x/term => github.com/awfulcooking/term v0.0.0-20211128155416-2652f7c0d88b

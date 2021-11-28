@@ -1,5 +1,3 @@
-// +build plan9 windows
-
 // Copyright 2021 The TCell Authors
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,12 +12,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+// +build js
+
 package tcell
 
-// NB: We might someday wish to move Windows to this model.   However,
-// that would probably mean sacrificing some of the richer key reporting
-// that we can obtain with the console API present on Windows.
+import "os"
 
-func (t *tScreen) initialize() error {
-	return ErrNoScreen
+type stubWinchSignal struct{}
+
+func (_ stubWinchSignal) Signal() {}
+func (_ stubWinchSignal) String() string {
+	return "(sigwinch stub)"
 }
+
+var _SIGWINCH os.Signal = stubWinchSignal{}

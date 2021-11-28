@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// +build aix darwin dragonfly freebsd linux netbsd openbsd solaris zos
+// +build aix darwin dragonfly freebsd js linux netbsd openbsd solaris zos
 
 package tcell
 
@@ -23,7 +23,6 @@ import (
 	"os/signal"
 	"strconv"
 	"sync"
-	"syscall"
 	"time"
 
 	"golang.org/x/term"
@@ -103,7 +102,7 @@ func (tty *stdIoTty) Start() error {
 		}
 	}(tty.stopQ)
 
-	signal.Notify(tty.sig, syscall.SIGWINCH)
+	signal.Notify(tty.sig, _SIGWINCH)
 	return nil
 }
 

@@ -1,5 +1,3 @@
-// +build plan9 windows
-
 // Copyright 2021 The TCell Authors
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,12 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+// +build aix darwin dragonfly freebsd linux netbsd openbsd solaris zos
+
 package tcell
 
-// NB: We might someday wish to move Windows to this model.   However,
-// that would probably mean sacrificing some of the richer key reporting
-// that we can obtain with the console API present on Windows.
+import (
+	"os"
+	"syscall"
+)
 
-func (t *tScreen) initialize() error {
-	return ErrNoScreen
-}
+var _SIGWINCH os.Signal = syscall.SIGWINCH

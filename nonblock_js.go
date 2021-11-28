@@ -1,5 +1,3 @@
-// +build plan9 windows
-
 // Copyright 2021 The TCell Authors
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,12 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+// +build js
+
 package tcell
 
-// NB: We might someday wish to move Windows to this model.   However,
-// that would probably mean sacrificing some of the richer key reporting
-// that we can obtain with the console API present on Windows.
-
-func (t *tScreen) initialize() error {
-	return ErrNoScreen
+// tcSetBufParams is used by the tty driver on UNIX systems to configure the
+// buffering parameters (minimum character count and minimum wait time in msec.)
+//
+// This is a stub for GOOS=js, which reuses most of tcell's UNIX code, but doesn't
+// provide termios syscalls.
+func tcSetBufParams(fd int, vMin uint8, vTime uint8) error {
+	return nil
 }
